@@ -4,13 +4,17 @@
 class Image
 {
 public:
-	Image();
+	Image(unsigned int width, unsigned int height);
 	~Image();
-	void SetPixel(int x, int y, const Vector& col);
-	Vector GetPixel(int x, int y);
-	void DividePixel(double div);
-	void GammaCorrection(void);
-	void OutputPpm(const std::ofstream& file);
+	void SetPixel(unsigned int x, unsigned int y, const Vector<unsigned int>& col);
+	Vector<unsigned int> GetPixel(unsigned int x, unsigned int y) const;
+	void DividePixel(const double div);
+	void GammaCorrection(double gamma);
+	void OutputPpm(const std::ofstream& file) const;
 
+private:
+	Vector<unsigned int>* m_Data;
+	const unsigned int m_Width;
+	const unsigned int m_Height;
 };
 

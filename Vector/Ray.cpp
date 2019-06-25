@@ -8,15 +8,15 @@ Ray::~Ray()
 {
 }
 
-const Vector& Ray::GetOrigin(void) const {
+const Vector<double>& Ray::GetOrigin(void) const {
 	return m_Origin;
 }
 
-const Vector& Ray::GetDirection(void) const {
+const Vector<double>& Ray::GetDirection(void) const {
 	return m_Direction;
 }
 
-Vector Ray::operator()(double point) {
+Vector<double> Ray::operator()(double point) {
 	return m_Origin + point * m_Direction;
 }
 

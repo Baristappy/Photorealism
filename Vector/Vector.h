@@ -1,31 +1,32 @@
 #pragma once
 #include <iostream>
 
-class Vector {
+template<class TYPE> class Vector {
 public:
-	double x;
-	double y;
-	double z;
+	TYPE x;
+	TYPE y;
+	TYPE z;
 
 	Vector();
-	Vector(double nx, double ny, double nz);
+	Vector(TYPE nx, TYPE ny, TYPE nz);
 	~Vector();
 	Vector operator+(const Vector& vec);
 	Vector operator-(const Vector& vec);
 	Vector operator*(const Vector& vec);
 	Vector operator/(const Vector& vec);
+	Vector operator=(const Vector& vec);
 
-	Vector operator+(const double val);
-	Vector operator-(const double val);
-	Vector operator*(const double val);
-	Vector operator/(const double val);
+	Vector operator+(const TYPE val);
+	Vector operator-(const TYPE val);
+	Vector operator*(const TYPE val);
+	Vector operator/(const TYPE val);
 
 	Vector reverse(void);
 
-	double length(void);
-	double lengthPower(void);
+	TYPE length(void);
+	TYPE lengthPower(void);
 
-	double innerProduct(const Vector& vec);
+	TYPE innerProduct(const Vector& vec);
 	Vector crossProduct(const Vector& vec);
 
 	Vector normalization(void);
@@ -33,8 +34,8 @@ public:
 	void print(void);
 };
 
-std::ostream& operator<<(std::ostream& out, const Vector& vec);
-Vector operator+(double val, const Vector& vec);
-Vector operator-(double val, const Vector& vec);
-Vector operator*(double val, const Vector& vec);
-Vector operator/(double val, const Vector& vec);
+template<class TYPE> std::ostream& operator<<(std::ostream& out, const Vector<TYPE>& vec);
+template<class TYPE> Vector<TYPE> operator+(TYPE val, const Vector<TYPE>& vec);
+template<class TYPE> Vector<TYPE> operator-(TYPE val, const Vector<TYPE>& vec);
+template<class TYPE> Vector<TYPE> operator*(TYPE val, const Vector<TYPE>& vec);
+template<class TYPE> Vector<TYPE> operator/(TYPE val, const Vector<TYPE>& vec);

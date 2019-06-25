@@ -1,0 +1,3 @@
+Image.cpp:void Image::SetPixel(int x, int y, const Vector& col) {
+Image.cpp:Vector Image::GetPixel(int x, int y) {
+Image.cpp:void Image::DividePixel(double div) {

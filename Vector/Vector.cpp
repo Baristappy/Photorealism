@@ -1,23 +1,23 @@
 #include "Vector.h"
 #include <iostream>
 
-Vector::Vector(){
+template <class TYPE> Vector<TYPE>::Vector(){
 	x = 0.0;
 	y = 0.0;
 	z = 0.0;
 }
 
-Vector::Vector(double nx, double ny, double nz) {
+template <class TYPE> Vector<TYPE>::Vector(TYPE nx, TYPE ny, TYPE nz) {
 	x = nx;
 	y = ny;
 	z = nz;
 }
 
-Vector::~Vector() {
+template <class TYPE> Vector<TYPE>::~Vector() {
 
 }
 
-Vector Vector::operator+(const Vector& vec) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const Vector<TYPE>& vec) {
 	Vector tmp;
 
 	tmp.x = this->x + vec.x;
@@ -27,7 +27,7 @@ Vector Vector::operator+(const Vector& vec) {
 	return tmp;
 }
 
-Vector Vector::operator-(const Vector& vec) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const Vector<TYPE>& vec) {
 	Vector tmp;
 
 	tmp.x = this->x - vec.x;
@@ -37,7 +37,7 @@ Vector Vector::operator-(const Vector& vec) {
 	return tmp;
 }
 
-Vector Vector::operator*(const Vector& vec) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const Vector<TYPE>& vec) {
 	Vector tmp;
 
 	tmp.x = this->x * vec.x;
@@ -47,7 +47,7 @@ Vector Vector::operator*(const Vector& vec) {
 	return tmp;
 }
 
-Vector Vector::operator/(const Vector& vec) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(const Vector<TYPE>& vec) {
 	Vector tmp;
 
 	if ( vec.x != 0 ) {
@@ -65,7 +65,25 @@ Vector Vector::operator/(const Vector& vec) {
 	return tmp;
 }
 
-Vector Vector::operator+(const double val) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator=(const Vector<TYPE>& vec) {
+	Vector tmp;
+
+	if (vec.x != 0) {
+		tmp.x = vec.x;
+	}
+
+	if (vec.y != 0) {
+		tmp.y = vec.y;
+	}
+
+	if (vec.z != 0) {
+		tmp.z = vec.z;
+	}
+
+	return tmp;
+}
+
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const TYPE val) {
 	Vector tmp;
 
 	tmp.x = this->x + val;
@@ -75,7 +93,7 @@ Vector Vector::operator+(const double val) {
 	return tmp;
 }
 
-Vector Vector::operator-(const double val) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const TYPE val) {
 	Vector tmp;
 
 	tmp.x = this->x - val;
@@ -85,7 +103,7 @@ Vector Vector::operator-(const double val) {
 	return tmp;
 }
 
-Vector Vector::operator*(const double val) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const TYPE val) {
 	Vector tmp;
 
 	tmp.x = this->x * val;
@@ -95,7 +113,7 @@ Vector Vector::operator*(const double val) {
 	return tmp;
 }
 
-Vector Vector::operator/(const double val) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(const TYPE val) {
 	Vector tmp;
 
 	if (val != 0) {
@@ -107,7 +125,7 @@ Vector Vector::operator/(const double val) {
 	return tmp;
 }
 
-Vector Vector::reverse(void) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::reverse(void) {
 	Vector tmp;
 
 	tmp.x = -x;
@@ -117,22 +135,22 @@ Vector Vector::reverse(void) {
 	return tmp;
 }
 
-double Vector::length(void) {
-	double length = std::sqrt(lengthPower());
+template <class TYPE> TYPE Vector<TYPE>::length(void) {
+	TYPE length = std::sqrt(lengthPower());
 	return length;
 }
 
-double Vector::lengthPower(void) {
-	double length = x * x + y * y + z * z;
+template <class TYPE> TYPE Vector<TYPE>::lengthPower(void) {
+	TYPE length = x * x + y * y + z * z;
 	return length;
 }
 
-double Vector::innerProduct(const Vector& vec) {
-	double ans = x * vec.x + y * vec.y + z * vec.z;
+template <class TYPE> TYPE Vector<TYPE>::innerProduct(const Vector<TYPE>& vec) {
+	TYPE ans = x * vec.x + y * vec.y + z * vec.z;
 	return ans;
 }
 
-Vector Vector::crossProduct(const Vector& vec) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::crossProduct(const Vector<TYPE>& vec) {
 	Vector temp;
 
 	temp.x = y * vec.z - vec.y * z;
@@ -142,8 +160,8 @@ Vector Vector::crossProduct(const Vector& vec) {
 	return temp;
 }
 
-Vector Vector::normalization(void) {
-	double len = length();
+template <class TYPE> Vector<TYPE> Vector<TYPE>::normalization(void) {
+	TYPE len = length();
 	Vector temp;
 
 	temp.x = x / len;
@@ -153,16 +171,16 @@ Vector Vector::normalization(void) {
 	return temp;
 }
 
-void Vector::print() {
+template <class TYPE> void Vector<TYPE>::print() {
 	std::cout << x << "," << y << "," << z << std::endl;
 }
 
-std::ostream& operator<<(std::ostream& out, const Vector& vec) {
+template <class TYPE> std::ostream& operator<<(std::ostream& out, const Vector<TYPE>& vec) {
 	out << vec.x << "," << vec.y << "," << vec.z;
 	return out;
 }
 
-Vector operator+(double val, const Vector& vec) {
+template <class TYPE> Vector<TYPE> operator+(TYPE val, const Vector<TYPE>& vec) {
 	Vector temp;
 
 	temp.x = val + vec.x;
@@ -172,7 +190,7 @@ Vector operator+(double val, const Vector& vec) {
 	return temp;
 }
 
-Vector operator-(double val, const Vector& vec) {
+template <class TYPE> Vector<TYPE> operator-(TYPE val, const Vector<TYPE>& vec) {
 	Vector temp;
 
 	temp.x = val - vec.x;
@@ -183,7 +201,7 @@ Vector operator-(double val, const Vector& vec) {
 
 }
 
-Vector operator*(double val, const Vector& vec) {
+template <class TYPE> Vector<TYPE> operator*(TYPE val, const Vector<TYPE>& vec) {
 	Vector temp;
 
 	temp.x = val * vec.x;
@@ -194,7 +212,7 @@ Vector operator*(double val, const Vector& vec) {
 
 }
 
-Vector operator/(double val, const Vector& vec) {
+template <class TYPE> Vector<TYPE> operator/(TYPE val, const Vector<TYPE>& vec) {
 	Vector temp;
 
 	temp.x = val / vec.x;
