@@ -4,8 +4,7 @@
 class Ray
 {
 public:
-	Ray();
-	Ray(const Vector<double>& origin, const Vector<double>& direction) : m_Origin(origin), m_Direction(direction){};
+	Ray(const Vector<double>& origin, const Vector<double>& direction);
 	~Ray();
 	
 	const Vector<double>& GetOrigin(void) const;

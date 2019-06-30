@@ -23,10 +23,12 @@ int main() {
 	std::cout << vec1.length() << std::endl;
 	*/
 
+	/*
 	Vector<double> vec1(0, 0, 0);
 	Vector<double> vec2(0, 0, 1);
 	Ray ray(vec1, vec2);
 
 	std::cout << ray << std::endl;
 	std::cout << ray(10) << std::endl;
+	*/
 }

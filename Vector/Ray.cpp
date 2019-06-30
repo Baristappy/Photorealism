@@ -1,6 +1,6 @@
 #include "Ray.h"
 
-Ray::Ray()
+Ray::Ray(const Vector<double>& origin, const Vector<double>& direction) : m_Origin(origin), m_Direction(direction)
 {
 }
 

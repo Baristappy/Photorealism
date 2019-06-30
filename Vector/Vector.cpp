@@ -18,7 +18,7 @@ template <class TYPE> Vector<TYPE>::~Vector() {
 }
 
 template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const Vector<TYPE>& vec) {
-	Vector tmp;
+	Vector<TYPE> tmp;
 
 	tmp.x = this->x + vec.x;
 	tmp.y = this->y + vec.y;
@@ -28,7 +28,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const Vector<TYPE>& v
 }
 
 template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const Vector<TYPE>& vec) {
-	Vector tmp;
+	Vector<TYPE> tmp;
 
 	tmp.x = this->x - vec.x;
 	tmp.y = this->y - vec.y;
@@ -38,7 +38,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const Vector<TYPE>& v
 }
 
 template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const Vector<TYPE>& vec) {
-	Vector tmp;
+	Vector<TYPE> tmp;
 
 	tmp.x = this->x * vec.x;
 	tmp.y = this->y * vec.y;
@@ -48,7 +48,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const Vector<TYPE>& v
 }
 
 template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(const Vector<TYPE>& vec) {
-	Vector tmp;
+	Vector<TYPE> tmp;
 
 	if ( vec.x != 0 ) {
 		tmp.x = this->x / vec.x;
@@ -66,7 +66,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(const Vector<TYPE>& v
 }
 
 template <class TYPE> Vector<TYPE> Vector<TYPE>::operator=(const Vector<TYPE>& vec) {
-	Vector tmp;
+	Vector<TYPE> tmp;
 
 	if (vec.x != 0) {
 		tmp.x = vec.x;
@@ -83,8 +83,8 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator=(const Vector<TYPE>& v
 	return tmp;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const TYPE val) {
-	Vector tmp;
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const double val) {
+	Vector<TYPE> tmp;
 
 	tmp.x = this->x + val;
 	tmp.y = this->y + val;
@@ -93,8 +93,8 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const TYPE val) {
 	return tmp;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const TYPE val) {
-	Vector tmp;
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const double val) {
+	Vector<TYPE> tmp;
 
 	tmp.x = this->x - val;
 	tmp.y = this->y - val;
@@ -103,8 +103,8 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const TYPE val) {
 	return tmp;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const TYPE val) {
-	Vector tmp;
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const double val) {
+	Vector<TYPE> tmp;
 
 	tmp.x = this->x * val;
 	tmp.y = this->y * val;
@@ -113,8 +113,8 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const TYPE val) {
 	return tmp;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(const TYPE val) {
-	Vector tmp;
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(const double val) {
+	Vector<TYPE> tmp;
 
 	if (val != 0) {
 		tmp.x = this->x / val;
@@ -126,7 +126,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(const TYPE val) {
 }
 
 template <class TYPE> Vector<TYPE> Vector<TYPE>::reverse(void) {
-	Vector tmp;
+	Vector<TYPE> tmp;
 
 	tmp.x = -x;
 	tmp.y = -y;
@@ -151,7 +151,7 @@ template <class TYPE> TYPE Vector<TYPE>::innerProduct(const Vector<TYPE>& vec) {
 }
 
 template <class TYPE> Vector<TYPE> Vector<TYPE>::crossProduct(const Vector<TYPE>& vec) {
-	Vector temp;
+	Vector<TYPE> temp;
 
 	temp.x = y * vec.z - vec.y * z;
 	temp.y = z * vec.x - vec.z * x;
@@ -162,7 +162,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::crossProduct(const Vector<TYPE>
 
 template <class TYPE> Vector<TYPE> Vector<TYPE>::normalization(void) {
 	TYPE len = length();
-	Vector temp;
+	Vector<TYPE> temp;
 
 	temp.x = x / len;
 	temp.y = y / len;
@@ -180,8 +180,8 @@ template <class TYPE> std::ostream& operator<<(std::ostream& out, const Vector<T
 	return out;
 }
 
-template <class TYPE> Vector<TYPE> operator+(TYPE val, const Vector<TYPE>& vec) {
-	Vector temp;
+template <class TYPE> Vector<TYPE> operator+(double val, const Vector<TYPE>& vec) {
+	Vector<TYPE> temp;
 
 	temp.x = val + vec.x;
 	temp.y = val + vec.y;
@@ -190,8 +190,8 @@ template <class TYPE> Vector<TYPE> operator+(TYPE val, const Vector<TYPE>& vec) 
 	return temp;
 }
 
-template <class TYPE> Vector<TYPE> operator-(TYPE val, const Vector<TYPE>& vec) {
-	Vector temp;
+template <class TYPE> Vector<TYPE> operator-(double val, const Vector<TYPE>& vec) {
+	Vector<TYPE> temp;
 
 	temp.x = val - vec.x;
 	temp.y = val - vec.y;
@@ -201,8 +201,8 @@ template <class TYPE> Vector<TYPE> operator-(TYPE val, const Vector<TYPE>& vec) 
 
 }
 
-template <class TYPE> Vector<TYPE> operator*(TYPE val, const Vector<TYPE>& vec) {
-	Vector temp;
+template <class TYPE> Vector<TYPE> operator*(double val, const Vector<TYPE>& vec) {
+	Vector<TYPE> temp;
 
 	temp.x = val * vec.x;
 	temp.y = val * vec.y;
@@ -212,8 +212,8 @@ template <class TYPE> Vector<TYPE> operator*(TYPE val, const Vector<TYPE>& vec) 
 
 }
 
-template <class TYPE> Vector<TYPE> operator/(TYPE val, const Vector<TYPE>& vec) {
-	Vector temp;
+template <class TYPE> Vector<TYPE> operator/(double val, const Vector<TYPE>& vec) {
+	Vector<TYPE> temp;
 
 	temp.x = val / vec.x;
 	temp.y = val / vec.y;

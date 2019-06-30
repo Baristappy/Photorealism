@@ -1,16 +1,2 @@
 ﻿  main.cpp
-  Vector.cpp
-  コードを生成中...
-Image.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall Vector<unsigned int>::Vector<unsigned int>(void)" (??0?$Vector@I@@QAE@XZ) が関数 "public: __thiscall Image::Image(unsigned int,unsigned int)" (??0Image@@QAE@II@Z) で参照されました。
-Image.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall Vector<unsigned int>::~Vector<unsigned int>(void)" (??1?$Vector@I@@QAE@XZ) が関数 "public: __thiscall Image::Image(unsigned int,unsigned int)" (??0Image@@QAE@II@Z) で参照されました。
-Image.obj : error LNK2019: 未解決の外部シンボル "public: class Vector<unsigned int> __thiscall Vector<unsigned int>::operator=(class Vector<unsigned int> const &)" (??4?$Vector@I@@QAE?AV0@ABV0@@Z) が関数 "public: void __thiscall Image::DividePixel(double)" (?DividePixel@Image@@QAEXN@Z) で参照されました。
-Image.obj : error LNK2019: 未解決の外部シンボル "public: class Vector<unsigned int> __thiscall Vector<unsigned int>::operator/(unsigned int)" (??K?$Vector@I@@QAE?AV0@I@Z) が関数 "public: void __thiscall Image::DividePixel(double)" (?DividePixel@Image@@QAEXN@Z) で参照されました。
-main.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall Vector<double>::Vector<double>(double,double,double)" (??0?$Vector@N@@QAE@NNN@Z) が関数 _main で参照されました。
-main.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall Vector<double>::~Vector<double>(void)" (??1?$Vector@N@@QAE@XZ) が関数 _main で参照されました。
-Ray.obj : error LNK2001: 外部シンボル ""public: __thiscall Vector<double>::~Vector<double>(void)" (??1?$Vector@N@@QAE@XZ)" は未解決です。
-main.obj : error LNK2019: 未解決の外部シンボル "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<<double>(class std::basic_ostream<char,struct std::char_traits<char> > &,class Vector<double> const &)" (??$?6N@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AAV01@ABV?$Vector@N@@@Z) が関数 _main で参照されました。
-Ray.obj : error LNK2001: 外部シンボル ""class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<<double>(class std::basic_ostream<char,struct std::char_traits<char> > &,class Vector<double> const &)" (??$?6N@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AAV01@ABV?$Vector@N@@@Z)" は未解決です。
-Ray.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall Vector<double>::Vector<double>(void)" (??0?$Vector@N@@QAE@XZ) が関数 "public: __thiscall Ray::Ray(void)" (??0Ray@@QAE@XZ) で参照されました。
-Ray.obj : error LNK2019: 未解決の外部シンボル "public: class Vector<double> __thiscall Vector<double>::operator+(class Vector<double> const &)" (??H?$Vector@N@@QAE?AV0@ABV0@@Z) が関数 "public: class Vector<double> __thiscall Ray::operator()(double)" (??RRay@@QAE?AV?$Vector@N@@N@Z) で参照されました。
-Ray.obj : error LNK2019: 未解決の外部シンボル "class Vector<double> __cdecl operator*<double>(double,class Vector<double> const &)" (??$?DN@@YA?AV?$Vector@N@@NABV0@@Z) が関数 "public: class Vector<double> __thiscall Ray::operator()(double)" (??RRay@@QAE?AV?$Vector@N@@N@Z) で参照されました。
-C:\Users\asuna\source\repos\Vector\Debug\Vector.exe : fatal error LNK1120: 10 件の未解決の外部参照
+  Vector.vcxproj -> C:\Users\asuna\source\repos\Vector\Debug\Vector.exe

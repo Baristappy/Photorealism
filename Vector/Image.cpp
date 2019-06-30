@@ -6,7 +6,7 @@
 
 Image::Image(unsigned int width, unsigned int height) : m_Height(width), m_Width(height)
 {
-	m_Data = new Vector<unsigned int>[m_Width * m_Height];
+	m_Data = new Vector<double>[m_Width * m_Height];
 	if (m_Data == NULL) {
 		std::cout << "Memmory Error!" << std::endl;
 		std::exit(EXIT_FAILURE);
@@ -20,7 +20,7 @@ Image::~Image()
 	m_Data = 0;
 }
 
-void Image::SetPixel(unsigned int x, unsigned int y, const Vector<unsigned int>& col) {
+void Image::SetPixel(unsigned int x, unsigned int y, const Vector<double>& col) {
 	if ( x < 0 || x >= m_Width ) {
 		return;
 	}
@@ -34,8 +34,8 @@ void Image::SetPixel(unsigned int x, unsigned int y, const Vector<unsigned int>&
 	m_Data[y * m_Width + x] = col;
 }
 
-Vector<unsigned int> Image::GetPixel(unsigned int x, unsigned int y) const{
-	Vector<unsigned int> temp;
+Vector<double> Image::GetPixel(unsigned int x, unsigned int y) const{
+	Vector<double> temp;
 	
 	if (x < 0 || x >= m_Width) {
 		return temp;
