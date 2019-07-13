@@ -1,34 +1,33 @@
-#include <iostream>
 #include "Vector.h"
 #include "Ray.h"
+#include "Image.h"
+#include <iostream>
+#include <iostream>
+#include <fstream>
 
 int main() {
-	/*
-	Vector vec1(1, 2, 3);
-	Vector vec2(4, 5, 6);
+	std::ofstream file;
+	file.open("output.ppm", std::ios::out);
+	if (file.is_open() == false) {
+		std::cout << "Output FileOpen Error!" << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
 
-	std::cout << vec1 + vec2 << std::endl;
-	std::cout << vec1 - vec2 << std::endl;
-	std::cout << vec1 * vec2 << std::endl;
-	std::cout << vec1 / vec2 << std::endl;
+	unsigned int width = 512;
+	unsigned int height = 512;
 
-	std::cout << vec1 + 1 << std::endl;
-	std::cout << vec1 - 1 << std::endl;
-	std::cout << vec1 * 2 << std::endl;
-	std::cout << vec1 / 2 << std::endl;
+	Image image(width, height);
 
-	std::cout << vec1.innerProduct(vec2) << std::endl;
-	std::cout << vec1.crossProduct(vec2) << std::endl;
+	for (unsigned int y = 0; y < height; y++) {
+		for (unsigned int x = 0; x < width; x++) {
+			double r = static_cast<double>(y) / static_cast<double>(height);
+			double g = static_cast<double>(x) / static_cast<double>(width);
+			double b = 1.0;
 
-	std::cout << vec1.length() << std::endl;
-	*/
+			Vector<double> col(r, g, b);
+			image.SetPixel(x, y, col);
+		}
+	}
 
-	/*
-	Vector<double> vec1(0, 0, 0);
-	Vector<double> vec2(0, 0, 1);
-	Ray ray(vec1, vec2);
-
-	std::cout << ray << std::endl;
-	std::cout << ray(10) << std::endl;
-	*/
+	image.OutputPpm(&file);
 }

@@ -1,8 +1,10 @@
 #include "Image.h"
+#include "util.h"
 #include <iostream>
+#include <fstream>
 #include <cstdlib>
 #include <cmath>
-
+#include <string>
 
 Image::Image(unsigned int width, unsigned int height) : m_Height(width), m_Width(height)
 {
@@ -13,6 +15,50 @@ Image::Image(unsigned int width, unsigned int height) : m_Height(width), m_Width
 	}
 }
 
+Image::Image(const char* filename) {
+	std::ifstream file;
+	std::string str;
+
+	file.open(filename, std::ios::in);
+	if (file.is_open() == false) {
+		std::cout << "Load Error!" << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
+
+	//P3
+	file >> str;
+	if (str != "P3") {
+		std::cout << "Mode Error!" << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
+
+	//‰¡•
+	file >> str;
+	m_Width = atoi(str.c_str());
+	//c•
+	file >> str;
+	m_Height = atoi(str.c_str());
+	//æ~’²
+	file >> str;
+	m_Shade = atoi(str.c_str());
+
+	m_Data = new Vector<double>[m_Width * m_Height];
+	if (m_Data == NULL) {
+		std::cout << "Memmory Error!" << std::endl;
+		std::exit(EXIT_FAILURE);
+	}
+
+	for (unsigned int y = 0; y < m_Height; y++) {
+		for (unsigned int x = 0; x < m_Width; x++) {
+			file >> str;
+			m_Data[y * m_Width + x].x = atoi(str.c_str());
+			file >> str;
+			m_Data[y * m_Width + x].y = atoi(str.c_str());
+			file >> str;
+			m_Data[y * m_Width + x].z = atoi(str.c_str());
+		}
+	}
+}
 
 Image::~Image()
 {
@@ -62,12 +108,30 @@ void Image::DividePixel(const double div) {
 void Image::GammaCorrection(double gamma) {
 	for (unsigned int y = 0; y < m_Height; y++) {
 		for (unsigned int x = 0; x < m_Width; x++) {
-			m_Data[y * m_Width + x].x = std::pow(gamma, m_Data[y * m_Width + x].x);
-			m_Data[y * m_Width + x].y = std::pow(gamma, m_Data[y * m_Width + x].y);
-			m_Data[y * m_Width + x].z = std::pow(gamma, m_Data[y * m_Width + x].z);
+			Vector<double> temp = m_Data[y * m_Width + x];
+			m_Data[y * m_Width + x].x = std::pow(gamma, temp.x);
+			m_Data[y * m_Width + x].y = std::pow(gamma, temp.y);
+			m_Data[y * m_Width + x].z = std::pow(gamma, temp.z);
 		}
 	}
 }
 
-void Image::OutputPpm(const std::ofstream& file) const{
+void Image::OutputPpm(std::ofstream* file){
+	file->seekp(std::ios::beg);
+
+	*file << "P3" << std::endl;
+	*file << m_Width << " " << m_Height << std::endl;
+	*file << m_Shade << std::endl;
+
+	for (unsigned int y = 0; y < m_Height; y++) {
+		for (unsigned int x = 0; x < m_Width; x++) {
+			Vector<double> temp = (GetPixel(x, y) * 255.0);
+			*file << static_cast<unsigned int>(clamp(temp.x, 0.0, 255.0)) << " " 
+				<< static_cast<unsigned int>(clamp(temp.y, 0.0, 255.0)) << " "
+				<< static_cast<unsigned int>(clamp(temp.z, 0.0, 255.0)) << std::endl;
+		}
+	}
+
+	file->close();
+
 }

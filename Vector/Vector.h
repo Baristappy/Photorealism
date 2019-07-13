@@ -14,7 +14,7 @@ public:
 	Vector operator-(const Vector& vec);
 	Vector operator*(const Vector& vec);
 	Vector operator/(const Vector& vec);
-	Vector operator=(const Vector& vec);
+	void operator=(const Vector& vec);
 
 	Vector operator+(const double val);
 	Vector operator-(const double val);
@@ -104,22 +104,10 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(const Vector<TYPE>& v
 	return tmp;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator=(const Vector<TYPE>& vec) {
-	Vector<TYPE> tmp;
-
-	if (vec.x != 0) {
-		tmp.x = vec.x;
-	}
-
-	if (vec.y != 0) {
-		tmp.y = vec.y;
-	}
-
-	if (vec.z != 0) {
-		tmp.z = vec.z;
-	}
-
-	return tmp;
+template <class TYPE> void Vector<TYPE>::operator=(const Vector<TYPE>& vec) {
+	this->x = vec.x;
+	this->y = vec.y;
+	this->z = vec.z;
 }
 
 template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const double val) {
