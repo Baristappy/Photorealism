@@ -8,18 +8,19 @@ public:
 	TYPE z;
 
 	Vector();
+	Vector(const Vector& vec);
 	Vector(TYPE nx, TYPE ny, TYPE nz);
 	~Vector();
-	Vector operator+(const Vector& vec);
-	Vector operator-(const Vector& vec);
-	Vector operator*(const Vector& vec);
-	Vector operator/(const Vector& vec);
+	Vector operator+(const Vector& vec)const;
+	Vector operator-(const Vector& vec)const;
+	Vector operator*(const Vector& vec)const;
+	Vector operator/(const Vector& vec)const;
 	void operator=(const Vector& vec);
 
-	Vector operator+(const double val);
-	Vector operator-(const double val);
-	Vector operator*(const double val);
-	Vector operator/(const double val);
+	Vector operator+(double val)const;
+	Vector operator-(double val)const;
+	Vector operator*(double val)const;
+	Vector operator/(double val)const;
 
 	Vector reverse(void);
 
@@ -39,6 +40,7 @@ template<class TYPE> Vector<TYPE> operator+(double val, const Vector<TYPE>& vec)
 template<class TYPE> Vector<TYPE> operator-(double val, const Vector<TYPE>& vec);
 template<class TYPE> Vector<TYPE> operator*(double val, const Vector<TYPE>& vec);
 template<class TYPE> Vector<TYPE> operator/(double val, const Vector<TYPE>& vec);
+template<class TYPE> void orthonormalBasic(Vector<TYPE>* v1, Vector<TYPE>* v2, Vector<TYPE>* v3);
 
 template <class TYPE> Vector<TYPE>::Vector() {
 	x = 0.0;
@@ -52,11 +54,17 @@ template <class TYPE> Vector<TYPE>::Vector(TYPE nx, TYPE ny, TYPE nz) {
 	z = nz;
 }
 
+template <class TYPE> Vector<TYPE>::Vector(const Vector& vec) {
+	x = vec.x;
+	y = vec.y;
+	z = vec.z;
+}
+
 template <class TYPE> Vector<TYPE>::~Vector() {
 
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const Vector<TYPE>& vec) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const Vector<TYPE>& vec) const {
 	Vector<TYPE> tmp;
 
 	tmp.x = this->x + vec.x;
@@ -66,7 +74,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const Vector<TYPE>& v
 	return tmp;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const Vector<TYPE>& vec) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const Vector<TYPE>& vec) const {
 	Vector<TYPE> tmp;
 
 	tmp.x = this->x - vec.x;
@@ -76,7 +84,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const Vector<TYPE>& v
 	return tmp;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const Vector<TYPE>& vec) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const Vector<TYPE>& vec) const {
 	Vector<TYPE> tmp;
 
 	tmp.x = this->x * vec.x;
@@ -86,7 +94,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const Vector<TYPE>& v
 	return tmp;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(const Vector<TYPE>& vec) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(const Vector<TYPE>& vec) const {
 	Vector<TYPE> tmp;
 
 	if (vec.x != 0) {
@@ -110,7 +118,7 @@ template <class TYPE> void Vector<TYPE>::operator=(const Vector<TYPE>& vec) {
 	this->z = vec.z;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const double val) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(double val) const {
 	Vector<TYPE> tmp;
 
 	tmp.x = this->x + val;
@@ -120,7 +128,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator+(const double val) {
 	return tmp;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const double val) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(double val) const {
 	Vector<TYPE> tmp;
 
 	tmp.x = this->x - val;
@@ -130,7 +138,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator-(const double val) {
 	return tmp;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const double val) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(double val) const {
 	Vector<TYPE> tmp;
 
 	tmp.x = this->x * val;
@@ -140,7 +148,7 @@ template <class TYPE> Vector<TYPE> Vector<TYPE>::operator*(const double val) {
 	return tmp;
 }
 
-template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(const double val) {
+template <class TYPE> Vector<TYPE> Vector<TYPE>::operator/(double val) const {
 	Vector<TYPE> tmp;
 
 	if (val != 0) {
@@ -248,4 +256,19 @@ template <class TYPE> Vector<TYPE> operator/(double val, const Vector<TYPE>& vec
 
 	return temp;
 
+}
+
+template <class TYPE> void orthonormalBasic(Vector<TYPE>* v1, Vector<TYPE>* v2, Vector<TYPE>* v3) {
+	if (v1 != NULL) {
+		v1->normalization();
+	}
+	if (v2 != NULL) {
+		if (v1->x >= 1.0) *v2 = Vector<TYPE>(0, 1, 0);
+		else *v2 = Vector<TYPE>(1, 0, 0);
+
+		*v2 = *v2 - v1->innerProduct(static_cast<const Vector<double>>(*v2)) * (*v1);
+	}
+	if (v3 != NULL) {
+		*v3 = v1->crossProduct(static_cast<const Vector<double>>(*v2));
+	}
 }

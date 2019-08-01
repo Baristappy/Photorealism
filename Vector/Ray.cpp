@@ -8,19 +8,11 @@ Ray::~Ray()
 {
 }
 
-const Vector<double>& Ray::GetOrigin(void) const {
-	return m_Origin;
-}
-
-const Vector<double>& Ray::GetDirection(void) const {
-	return m_Direction;
-}
-
 Vector<double> Ray::operator()(double point) {
 	return m_Origin + point * m_Direction;
 }
 
 std::ostream& operator<<(std::ostream& out, const Ray& ray) {
-	out << "origin : " << ray.GetOrigin() << "   " << "direction : " << ray.GetDirection();
+	out << "origin : " << ray.m_Origin << "   " << "direction : " << ray.m_Direction;
 	return out;
 }
